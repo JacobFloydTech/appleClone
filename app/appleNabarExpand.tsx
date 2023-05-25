@@ -1,82 +1,62 @@
 "use client";
-import {gsap} from 'gsap';
-import {useEffect, useRef, useState} from 'react';
+import { gsap } from "gsap";
+import { useEffect, useState } from "react";
 
-
-export default function ExpandNavbar(props) { 
-    let [item, setItem] = useState(props.prop)
+export default function ExpandNavbar(props: any) { 
+    let [item, setItem] = useState(props.prop);
     let [render, setRender] = useState(false);
     let [scroll, setScroll] = useState(0);
-    let [onPage, setOnPage] = useState(true);
-    function ifScroll() { 
-        if (window.scrollY > scroll) { 
-            props.setHover(false);
-        }
-        setScroll(window.scrollY)
-    }
-    function change() {
-        let el = document.getElementById("info")?.childNodes
-        let delay = 0;
-            try {
-                for (var i = el.length-1; i >= 0; i--) {
-                    gsap.to(el[i],  {opacity: 0, delay: delay, duration: 0.1})
-                    delay += 0.03
-                    if (i == 0) { 
-                        gsap.to("#main", {height: 0, duration: 0.5, delay: delay, onComplete: () => {gsap.set("#blur", {height: 0});}})
-                    }
-                }
-            } catch {console.log("error")}
-
-        setRender(false);
-    }
+    let [height, setHeight] = useState(0);
     useEffect(() => { 
-        setScroll(window.scrollY)
-        document.addEventListener("scroll", ifScroll)
-        document.addEventListener("mouseleave", (e) => {
-            change()
-            setTimeout(() => {props.setShow(false)}, 1000)
+        document.addEventListener("mouseleave", () => { 
+            disappear()
         })
     },[])
-    useEffect(() => {
-
-        //Intial render, user moves onto navbar
-        if (props.hover && !render && onPage) { 
-            gsap.set("#blur", {height: "100vh"})
-            gsap.fromTo("#main", {height: 0}, {height: "auto", duration: 0.2, onComplete: () => {gsap.set("#main", {height: document.getElementById("main")?.offsetHeight});}})
-            let el = document.getElementById("info")?.getElementsByTagName("p")
-            let delay = 0.01
-            for (var i in el) { 
-                if (typeof el[i] == 'object') { 
-                    gsap?.fromTo(el[i], {opacity: 0}, {opacity: 1, duration: 0.3, delay: delay,})
-                    delay += 0.03
-                }
+    function renderItems() { 
+        let delay = 0.1
+        let el = document.getElementById("info")
+        if (el) { 
+            Array.from(el.childNodes).forEach((x) => { 
+                gsap.fromTo(x, {opacity: 0}, {opacity: 1, duration: 0.3, delay: delay})
+                delay += 0.03
+            })
+        }
+    }
+    function disappear() { 
+        let delay = 0.05
+        let el = document.getElementById("info")
+        if (el) { 
+            console.log(el)
+            let arr = Array.from(el.childNodes)
+            console.log(arr);
+            for (var i = arr.length-1; i >= 0; i--) { 
+                gsap.fromTo(arr[i], {opacity: 1}, {opacity: 0, duration: 0.3, delay: delay})
+                delay += 0.03
+                if (i == 0 ) { gsap.to("#main", {height: 0, duration: 0.3, delay: delay, onComplete: () => {props.setHover(false);}})}
             }
+
+        }
+    }
+    useEffect(() => { 
+        if(props.hover && !render) { 
+            gsap.set("#blur", {height: '100vh'})
+            gsap.fromTo("#main", {height: 0}, {height: "auto", duration: 0.5, onComplete: () => {gsap.set("#main", {height: document.getElementById("main")?.offsetHeight})}})
+            renderItems();
             setRender(true);
-        }
-        //User moves off the navbar
-        if (!props.hover && render) { 
-            change()
         } 
-        //If item changes and still on navbar
-        if (props.hover && item != props.prop && render) { 
+        else if (render && props.hover) { 
             gsap.to("#main", {height: "auto", duration: 0.3, onComplete: () => {gsap.set("#main", {height: document.getElementById("main")?.offsetHeight})}})
-            let el = document.getElementById("info")?.getElementsByTagName("p")
-            let delay = 0.1
-            for (var i in el) { 
-                if (typeof el[i] == 'object') { 
-                    gsap?.fromTo(el[i], {opacity: 0}, {opacity: 1, duration: 0.3, delay: delay,})
-                    delay += 0.03
-               }
-            }
-            setItem(item);
+            renderItems()
+        } else if (!props.hover) { 
+            disappear();
+            setRender(false);
         }
-    },[props, setOnPage ])
-
+    },[props])
     return (
         <div>
-            <div id="main" className="h-0 z-40 relative w-full mt-2 text-neutral-50 bg-gray-500 font-xl">
+            <div id="main" className="h-0 z-40 relative w-full mt-2 text-neutral-50 overflow-hidden bg-gray-500 font-xl">
                 {props.prop == "Store" && 
-                <div className='flex-col py-10 ml-[210px]'>
+                <div className='flex-col overflowhidden py-10 ml-[210px]'>
                     <ul className='text-xl' id="info">
                         <p className='text-sm pb-4'>Shop</p>
                         <p className='mb-1 font-semibold'>Shop the latest</p>
@@ -89,7 +69,7 @@ export default function ExpandNavbar(props) {
                 </div>
                 }
                 {props.prop == "Mac" && 
-                <div className='flex-col py-10 ml-[210px]'>
+                <div className='flex-col overflowhidden py-10 ml-[210px]'>
                     <ul className='text-xl' id='info'>
                         <p className='text-sm pb-4'>Explore Mac</p>
                         <p className='mb-1 font-semibold'>MacBook Air</p>
@@ -104,7 +84,7 @@ export default function ExpandNavbar(props) {
                     </ul>
                 </div>}
                 {props.prop == "iPad" && 
-                <div className='flex-col py-10 ml-[210px]'>
+                <div className='flex-col overflowhidden py-10 ml-[210px]'>
                     <ul className='text-xl' id='info'>
                         <p className='text-sm pb-4'>Explore iPad</p>
                         <p className='mb-1 font-semibold'>Explore All iPad</p>
@@ -119,7 +99,7 @@ export default function ExpandNavbar(props) {
                     </ul>
                 </div>}
                 {props.prop == "iPhone" && 
-                <div className='flex-col py-10 ml-[210px]'>
+                <div className='flex-col overflowhidden py-10 ml-[210px]'>
                     <ul className='text-xl' id='info'>
                         <p className='text-sm pb-4'>Explore iPhone</p>
                         <p className='mb-1 font-semibold'>Explore all iPhone</p>
@@ -133,7 +113,7 @@ export default function ExpandNavbar(props) {
                     </ul>
                 </div>}
                 {props.prop == "Watch" && 
-                <div className='flex-col py-10 ml-[210px]'>
+                <div className='flex-col overflowhidden py-10 ml-[210px]'>
                     <ul className='text-xl' id='info'>
                         <p className='text-sm pb-4'>Explore Apple Watch</p>
                         <p className='mb-1 font-semibold'>Explore All Apple Watch</p>
@@ -147,7 +127,7 @@ export default function ExpandNavbar(props) {
                     </ul>
                 </div>}
                 {props.prop == "Airpods" && 
-                <div className='flex-col py-10 ml-[210px]'>
+                <div className='flex-col overflowhidden py-10 ml-[210px]'>
                     <ul className='text-xl' id='info'>
                         <p className='text-sm pb-4'>Explore AirPods</p>
                         <p className='mb-1 font-semibold'>Explore All Airpods</p>
@@ -160,7 +140,7 @@ export default function ExpandNavbar(props) {
                     </ul>
                 </div>}
                 {props.prop == "TV" && 
-                <div className='flex-col py-10 ml-[210px]'>
+                <div className='flex-col overflowhidden py-10 ml-[210px]'>
                     <ul className='text-xl' id='info'>
                         <p className='text-sm pb-4'>Explore TV & Home</p>
                         <p className='mb-1 font-semibold'>Explore TV & Home</p>
@@ -170,7 +150,7 @@ export default function ExpandNavbar(props) {
                     </ul>
                 </div>}
                 {props.prop == "Entertainment" && 
-                <div className='flex-col py-10 ml-[210px]'>
+                <div className='flex-col overflowhidden py-10 ml-[210px]'>
                     <ul className='text-xl' id='info'>
                         <p className='text-sm pb-4'>Explore Entertainment</p>
                         <p className='mb-1 font-semibold'>Explore Entertainment</p>
@@ -186,7 +166,7 @@ export default function ExpandNavbar(props) {
                     </ul>
                 </div>}
                 {props.prop == "Accessories" && 
-                <div className='flex-col py-10 ml-[210px]'>
+                <div className='flex-col overflowhidden py-10 ml-[210px]'>
                     <ul className='text-xl' id='info'>
                         <p className='text-sm pb-4'>Shop Accessories</p>
                         <p className='mb-1 font-semibold'>Shop All Accessories</p>
@@ -199,7 +179,7 @@ export default function ExpandNavbar(props) {
                     </ul>
                 </div>}
                 {props.prop == "Support" && 
-                <div className='flex-col py-10 ml-[210px]'>
+                <div className='flex-col overflowhidden py-10 ml-[210px]'>
                     <ul className='text-xl' id='info'>
                         <p className='text-sm pb-4'>Explore Support</p>
                         <p className='mb-1 font-semibold'>iPhone</p>
@@ -212,8 +192,8 @@ export default function ExpandNavbar(props) {
                         <p className='text-sm mt-4 font-semibold pb-4'>Explore Support</p>  
                     </ul>
                 </div>}
-                <div onMouseEnter={() => {props.setHover(false);}} id='blur' className='h-0 w-full z-0 backdrop-blur-sm absolute top-full'></div>
             </div>
+            <div onMouseEnter={() => {disappear()}} id='blur' className={`h-0 w-full z-40 backdrop-blur-sm absolute top-[${document.getElementById("main")?.offsetHeight}px] overflow-visible`}></div>
         </div>
     )
 }

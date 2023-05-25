@@ -1,8 +1,9 @@
 "use client"
 import "react";
 import { use, useEffect, useRef, useState } from "react";
-import ExpandNavbar from "./appleNabarExpand";
 import { gsap } from "gsap";
+import ExpandNavbar from "./appleNabarExpand";
+
 
 export default function Navbar() { 
     let [hover, setHover] = useState(false);
@@ -26,8 +27,8 @@ export default function Navbar() {
                 <p onMouseEnter={() => {setHover(true);setShow(true);setItem("Accessories")}}  className='px-5'>Accessories</p>
                 <p onMouseEnter={() => {setHover(true);setShow(true);setItem("Support")}}  className='px-5'>Support</p>
             </ul>
-            {show && 
-                <ExpandNavbar setShow={setShow} ref={ref} hover={hover} setHover={setHover} prop={item}/>
+            {hover && 
+                <ExpandNavbar hover={hover} setHover={setHover} prop={item}/>
             }
             
         </div>
