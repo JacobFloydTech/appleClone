@@ -22,8 +22,8 @@ export default function PhotoGallery() {
                     show: true,
                 })
                 let tl = gsap.timeline()
-                tl.fromTo("#img", { opacity: 1 }, { opacity: 0, duration: 0.75, onComplete: () => { setSrc(x[0].src) } })
-                tl.fromTo("#img", { opacity: 0 }, { opacity: 1, duration: 0.75 })
+                tl.fromTo("#img", { opacity: 1, scale: 1 }, { opacity: 0, scale: 0.95, duration: 0.75, onComplete: () => { setSrc(x[0].src) } })
+                tl.fromTo("#img", { opacity: 0, scale: 0.95 }, { scale: 1, opacity: 1, duration: 0.75 })
             }
         })
     }
