@@ -5,7 +5,7 @@ import { useEffect, useLayoutEffect, useMemo, useState } from "react";
 export default function ExpandNavbar(props: any) {
   let [render, setRender] = useState(false);
   let [scroll, setScroll] = useState(0);
-  let [item, setItem] = useState(props.prop);
+
 
   useEffect(() => {
     setScroll(window.scrollY);
@@ -35,53 +35,35 @@ export default function ExpandNavbar(props: any) {
           delay += 0.03;
         });
       });
-    } else {
-      console.log("Not el");
     }
   }
   function disappear() {
-    let delay = 0.05;
-    let el = document.getElementById("info");
+
+    let el = document.getElementsByClassName("info");
     if (el) {
-      console.log(el);
-      let arr = Array.from(el.childNodes);
-      console.log(arr);
-      for (var i = arr.length - 1; i >= 0; i--) {
-        gsap.fromTo(
-          arr[i],
-          { opacity: 1 },
-          { opacity: 0, duration: 0.3, delay: delay }
-        );
-        delay += 0.03;
-        if (i == 0) {
-          gsap.to("#main", {
-            height: 0,
-            duration: 0.3,
-            delay: delay,
-            onComplete: () => {
-              props.setHover(false);
-            },
-          });
+      Array.from(el).forEach((child: any) => {
+        let delay = 0;
+        let arr: any = [];
+        Array.from(child.childNodes).forEach((grandChild) => {
+          arr.push(grandChild)
+        })
+        for (var i = arr.length - 1; i >= 0; i--) {
+          gsap.fromTo(arr[i], { opacity: 1 }, { opacity: 0, duration: 0.3, delay: delay })
+          delay += 0.03;
+          if (i == 1) { gsap.to("#main", { height: 0, duration: 0.5, delay: delay, onComplete: () => { gsap.set("#blur", { height: 0 }) } }) }
         }
-      }
-    } else {
-      gsap.to("#main", {
-        height: 0,
-        duration: 0.3,
-        delay: delay,
-        onComplete: () => {
-          props.setHover(false);
-        },
-      });
+      })
     }
   }
+
+
   useEffect(() => {
-    if (props.prop.length == 0) {
-      console.log("Disappear");
+    //User moves onto navbar for first time
+    if (props.animate) {
+      console.log("Animate out time!");
       disappear();
       setRender(false);
     }
-    //User moves onto navbar for first time
     else if (props.hover && !render) {
       gsap.set("#blur", { height: "100vh" });
       gsap.fromTo(
@@ -102,6 +84,8 @@ export default function ExpandNavbar(props: any) {
     }
     //User moves from one item to another
     else if (render && props.hover) {
+      console.log("Moving to another object");
+      gsap.set("#blur", { height: "100vh" });
       gsap.to("#main", {
         height: "auto",
         duration: 0.3,
@@ -113,11 +97,7 @@ export default function ExpandNavbar(props: any) {
       });
       renderItems();
     }
-    //User moves off entirely
-    else if (!props.hover) {
-      disappear();
-      setRender(false);
-    }
+
   }, [props]);
   return (
     <div>
@@ -410,9 +390,8 @@ export default function ExpandNavbar(props: any) {
           disappear();
         }}
         id="blur"
-        className={`h-0 w-full z-40 backdrop-blur-sm absolute top-[${
-          document.getElementById("main")?.offsetHeight
-        }px] overflow-visible`}></div>
+        className={`h-0 w-full z-40 backdrop-blur-sm absolute top-[${document.getElementById("main")?.offsetHeight
+          }px] overflow-visible`}></div>
     </div>
   );
 }

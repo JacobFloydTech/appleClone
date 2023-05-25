@@ -7,15 +7,14 @@ import ExpandNavbar from "./appleNabarExpand";
 export default function Navbar() {
   let [hover, setHover] = useState(false);
   let [item, setItem] = useState("");
+  let [AnimateOut, setAnimateOut] = useState(false);
 
   let ref = useRef<any>();
   return (
     <div className="bg-[#434344]">
       <div className="h-[50px] relative">
         <ul
-          onMouseOverCapture={() => {
-            setItem("");
-          }}
+          onMouseOverCapture={() => { setAnimateOut(true) }}
           className="flex pt-[12px] w-auto justify-center text-neutral-100 text-sm">
           <img
             id="start"
@@ -25,6 +24,7 @@ export default function Navbar() {
           <p
             onMouseOverCapture={() => {
               setHover(true);
+              setAnimateOut(false);
               setItem("Store");
             }}
             className="px-5">
@@ -33,6 +33,7 @@ export default function Navbar() {
           <p
             onMouseOverCapture={() => {
               setHover(true);
+              setAnimateOut(false);
               setItem("Mac");
             }}
             className="px-5">
@@ -41,6 +42,7 @@ export default function Navbar() {
           <p
             onMouseOverCapture={() => {
               setHover(true);
+              setAnimateOut(false);
               setItem("iPad");
             }}
             className="px-5">
@@ -49,6 +51,7 @@ export default function Navbar() {
           <p
             onMouseOverCapture={() => {
               setHover(true);
+              setAnimateOut(false);
               setItem("iPhone");
             }}
             className="px-5">
@@ -57,6 +60,7 @@ export default function Navbar() {
           <p
             onMouseOverCapture={() => {
               setHover(true);
+              setAnimateOut(false);
               setItem("Watch");
             }}
             className="px-5">
@@ -65,6 +69,7 @@ export default function Navbar() {
           <p
             onMouseOverCapture={() => {
               setHover(true);
+              setAnimateOut(false);
               setItem("Airpods");
             }}
             className="px-5">
@@ -73,6 +78,7 @@ export default function Navbar() {
           <p
             onMouseOverCapture={() => {
               setHover(true);
+              setAnimateOut(false);
               setItem("TV");
             }}
             className="px-5">
@@ -82,6 +88,7 @@ export default function Navbar() {
             onMouseOverCapture={() => {
               setHover(true);
               setItem("Entertainment");
+              setAnimateOut(false);
             }}
             className="px-5">
             Entertainment
@@ -89,7 +96,8 @@ export default function Navbar() {
           <p
             onMouseOverCapture={() => {
               setHover(true);
-              setItem("Accessories");
+              setItem("Accessories"); setAnimateOut(false);
+
             }}
             className="px-5">
             Accessories
@@ -97,6 +105,7 @@ export default function Navbar() {
           <p
             onMouseOverCapture={() => {
               setHover(true);
+              setAnimateOut(false);
               setItem("Support");
             }}
             className="px-5">
@@ -109,6 +118,7 @@ export default function Navbar() {
             setHover={setHover}
             prop={item}
             setItem={setItem}
+            animate={AnimateOut}
           />
         )}
       </div>
