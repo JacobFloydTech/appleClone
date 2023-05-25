@@ -34,11 +34,17 @@ export default function ExpandNavbar(props: any) {
                 delay += 0.03
                 if (i == 0 ) { gsap.to("#main", {height: 0, duration: 0.3, delay: delay, onComplete: () => {props.setHover(false);}})}
             }
-
+        } else { 
+            gsap.to("#main", {height: 0, duration: 0.3, delay: delay, onComplete: () => {props.setHover(false);}})
         }
     }
     useEffect(() => { 
-        if(props.hover && !render) { 
+        if (props.prop.length == 0) { 
+            console.log("Disappear");
+            disappear();
+            setRender(false);
+        }
+        else if (props.hover && !render) { 
             gsap.set("#blur", {height: '100vh'})
             gsap.fromTo("#main", {height: 0}, {height: "auto", duration: 0.5, onComplete: () => {gsap.set("#main", {height: document.getElementById("main")?.offsetHeight})}})
             renderItems();
@@ -50,7 +56,7 @@ export default function ExpandNavbar(props: any) {
         } else if (!props.hover) { 
             disappear();
             setRender(false);
-        }
+        } 
     },[props])
     return (
         <div>
