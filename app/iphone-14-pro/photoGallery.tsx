@@ -33,7 +33,7 @@ export default function PhotoGallery() {
         <div className="relative">
             <div className="w-full bg-black h-full top-0 left-0 absolute -z-10"></div>
             {!ended &&
-                <video id="video" controls autoPlay muted>
+                <video id="video" preload="auto" autoPlay muted>
                     <source src="/apple/iphone14Pro/iphone14intro.mp4" type="video/mp4"></source>
                 </video>}
             {ended &&
