@@ -21,10 +21,11 @@ export default function PhotoGallery() {
         })
     }
     useEffect(() => {
-        document.getElementById("video")?.addEventListener('ended', () => {
+        var video = document.getElementById("video")
+        video?.addEventListener('ended', () => {
             setEnded(true);
-
         })
+
     }, [])
     useEffect(() => {
         gsap.fromTo(document.getElementsByClassName("fadein"), { opacity: 0 }, { opacity: 1, duration: 3 })
@@ -33,13 +34,13 @@ export default function PhotoGallery() {
         <div className="relative">
             <div className="w-full bg-black h-full top-0 left-0 absolute -z-10"></div>
             {!ended &&
-                <video id="video" preload="auto" autoPlay muted>
-                    <source src="/apple/iphone14Pro/iphone14intro.mp4" type="video/mp4"></source>
+                <video id="video" autoPlay muted>
+                    <source id='srcvideo' src="/apple/iphone14Pro/iphone14intro.mp4" type="video/mp4"></source>
                 </video>}
             {ended &&
                 <div id="photogallery">
                     <div className="flex">
-                        <p className="text-gray-600 font-semibold w-auto h-auto text-6xl ml-[120px] opacity-90 mt-10">Pro. Beyond</p>
+                        <p className="text-gray-600 font-semibold w-auto h-auto text-6xl ml-[120px] opacity-90 mt-6">Pro. Beyond</p>
                         <ul className="flex w-auto justify-center align-center mt-[70px] ml-[400px]">
                             <p id="col" className="text-white font-semibold text-xl mr-6 text-right w-[150px] fadein">{current.color.text}</p>
                             <div onClick={() => { changeState("Deep Purple") }} className={"rounded-full mr-4 relative w-[30px] h-[30px] bg-black " + (current.color.text == 'Deep Purple' ? " border-blue-500 border-2" : null)}>

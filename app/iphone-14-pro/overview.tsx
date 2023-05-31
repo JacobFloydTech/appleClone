@@ -2,7 +2,7 @@
 
 export default function Overview() {
     return (
-        <div className="w-auto h-auto flex py-4 text-white bg-black">
+        <div className="w-auto h-auto flex pt-4 text-white bg-black">
             <p className="ml-[201px] text-2xl font-semibold">iPhone 14 Pro</p>
             <ul className="flex w-auto mx-auto text-sm py-2 pl-40">
                 <p className="mx-2 text-gray-400">Overview</p>
