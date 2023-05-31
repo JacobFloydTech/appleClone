@@ -10,6 +10,7 @@ export default function PhotoGallery() {
     let [colours, setColours] = useState<Colour[]>([{ text: "Deep Purple", src: '/apple/iphone14Pro/phonepurple.jpg' }, { text: "Gold", src: '/apple/iphone14Pro/phonegold.jpg' }, { text: "Silver", src: '/apple/iphone14Pro/phonesilver.jpg' }, { text: "Space Black", src: '/apple/iphone14Pro/phoneblack.jpg' }])
     let [current, setCurrent] = useState({ color: colours[0] });
     let [ended, setEnded] = useState(false);
+    let [src, setSrc] = useState(current.color.src)
 
     function changeState(color: string) {
         colours.forEach((item: Colour, index: number) => {

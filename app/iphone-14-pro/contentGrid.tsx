@@ -70,7 +70,7 @@ export default function ContentGrid() {
                 start: "top 50%",
                 end: 'top 10%',
                 scrub: false,
-                markers: true
+                markers: false,
             }
         })
         gsap.fromTo("#alwayson", { opacity: 0, scale: 0.95, y: 20 }, {
@@ -97,7 +97,7 @@ export default function ContentGrid() {
             <p className="w-auto pt-[50px] text-center text-3xl mx-auto text-gray-400  font-semibold">iPhone 14 and iPhone 14 Pro Max</p>
             <p className="w-auto pt-4 text-center mx-auto text-xl text-gray-600 font-semibold">From $999 or $41.62/mo. for 24 mo. before trade‑in*</p>
             <p className="p-2 text-white bg-blue-500 rounded-full text-center w-[70px] mt-12 mx-auto">Buy</p>
-            <div className="h-[5000px]" id='grid'>
+            <div className="h-[2700px]" id='grid'>
                 <div className="mt-[120px] grid grid-cols-3 w-[950px] gap-4 mx-auto content-center justify-center ">
                     <div className="overflow-hidden col-span-2 row-span-2 bg-black rounded-3xl h-auto w-auto relative">
                         <div className="text-purple-500 font-semibold text-center mt-4 text-4xl ">Meet</div>
@@ -134,7 +134,7 @@ export default function ContentGrid() {
                             <source src={'/apple/iphone14Pro/filmlikeapro.mp4'}></source>
                         </video>
                     </div>
-                    <div className="rounded-xl w-auto h-auto overflow-hidden row-span-2 col-span-1 col-start-1 basketball relative">
+                    <div className="rounded-xl w-auto h-[402px] bg-black overflow-hidden row-span-2 col-span-1 col-start-1 basketball relative">
                         {video == 'firstphoto' &&
                             <img src={'/apple/iphone14Pro/basketballfirst.jpg'}></img>}
                         {video == 'video' &&
@@ -150,13 +150,13 @@ export default function ContentGrid() {
                             <p className="text-3xl">stable video</p>
                         </div>
                     </div>
-                    <div className="w-auto relative h-auto overflow-hidden row-span-2 col-span-2 col-start-2 bg-black">
+                    <div className="h-[402px] overflow-hidden row-span-2 col-span-2 col-start-2 bg-black rounded-2xl">
                         <div className="text-center w-auto font-semibold text-4xl text-purple-500 mt-10">
                             <p>Always-On Display</p>
                             <p>A subtle way to stay</p>
                             <p>In the know.</p>
                         </div>
-                        <img id='alwayson' className="w-[210px] h-auto absolute bottom-0 left-1/2 transform -translate-x-1/2" src={'/apple/iphone14Pro/alwaysondeeppurple.jpg'}></img>
+                        <img id='alwayson' className="w-[200px] content-center mx-auto mt-8" src={'/apple/iphone14Pro/alwaysondeeppurple.jpg'}></img>
                     </div>
                     <div className="w-auto h-auto row-span-2 col-span-2 bg-black col-start-1 rounded-2xl relative">
                         <div className="text-white font-semibold text-center mt-12">
