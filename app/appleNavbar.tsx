@@ -4,18 +4,18 @@ import { use, useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import ExpandNavbar from "./appleNabarExpand";
 
-export default function Navbar() {
+export default function Navbar(props: any) {
   let [hover, setHover] = useState(false);
   let [item, setItem] = useState("");
   let [AnimateOut, setAnimateOut] = useState(false);
 
   let ref = useRef<any>();
   return (
-    <div className="bg-[#434344]">
+    <div className={`${props.background}`}>
       <div className="h-[50px] relative">
         <ul
           onMouseOverCapture={() => { setAnimateOut(true) }}
-          className="flex pt-[12px] w-auto justify-center text-neutral-100 text-sm">
+          className={`flex pt-[12px] w-auto justify-center ${props.textColor} text-sm`}>
           <img
             id="start"
             className="flex w-[19.6px] h-[24px]"
@@ -114,6 +114,8 @@ export default function Navbar() {
         </ul>
         {hover && (
           <ExpandNavbar
+            background={props.background}
+            textColor={props.textColor}
             hover={hover}
             setHover={setHover}
             prop={item}

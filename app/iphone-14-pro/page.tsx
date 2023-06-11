@@ -6,7 +6,7 @@ import ContentGrid from "./contentGrid";
 export default function App() {
     return (
         <div>
-            <Navbar />
+            <Navbar background="bg-[#434344]" textColor="text-neutral-100" />
             <Overview />
             <PhotoGallery />
             <ContentGrid />

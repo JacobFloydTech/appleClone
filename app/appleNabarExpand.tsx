@@ -103,7 +103,7 @@ export default function ExpandNavbar(props: any) {
     <div>
       <div
         id="main"
-        className="h-0 z-40 relative w-full mt-2 text-neutral-50 overflow-hidden bg-[#434344] font-xl">
+        className={"h-0 z-40 relative w-full mt-2 overflow-hidden font-xl" + (props.background && props.textColor ? ` ${props.background} ${props.textColor}` : " bg-[#434344] text-neutral-50")}>
         {props.prop == "Store" && (
           <div className="flex-row flex w-auto overflow-hidden py-10 ml-[201px]">
             <ul className="text-xl mr-12 info">

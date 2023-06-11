@@ -2,7 +2,7 @@
 
 import { useEffect, useLayoutEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-export default function Phone(props) {
+export default function Phone(props: any) {
     const router = useRouter();
     let [learn, setLearn] = useState(false)
     let [buy, setBuy] = useState(false);
