@@ -20,11 +20,7 @@ export default function IPhoneImage() {
             }
         })
     }, [])
-    useLayoutEffect(() => {
-        document.addEventListener("scroll", () => {
-            console.log(window.scrollY);
-        })
-    })
+
     function animate(n: number) {
         gsap.to("#container", { x: n, duration: 0.5 })
         setRight(right => !right);

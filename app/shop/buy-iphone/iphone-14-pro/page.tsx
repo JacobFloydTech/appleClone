@@ -8,14 +8,23 @@ import InfoGuidePopUp from "./infoGuidePopUp";
 import TradeIn from "./tradeIn";
 import BoxContents from "./boxContents";
 import CompareiPhones from "./compareiPhones";
+import Fade from "./fade";
+import React, { useEffect } from "react";
 import { useState } from "react";
+
+export const Context = React.createContext<any>(null);
+
+
 
 //Remember to use navbar at the end
 export default function Page() {
     let [showOptions, setShowOptions] = useState(false);
+    let [top, setTop] = useState(700);
+
 
     return (
-        <div>
+        <Context.Provider value={{ top, setTop }}>
+            <Fade />
             {
                 // <Navbar textColor='text-black' background='bg-white' />
             }
@@ -29,6 +38,6 @@ export default function Page() {
             <BoxContents />
             <CompareiPhones />
             {showOptions && <InfoGuidePopUp setShow={setShowOptions} />}
-        </div>
+        </Context.Provider>
     )
 }
