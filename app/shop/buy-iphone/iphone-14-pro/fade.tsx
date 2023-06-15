@@ -3,21 +3,24 @@ import { useContext, useEffect, useLayoutEffect, useState } from "react";
 import { Context } from "./page";
 import { gsap } from "gsap";
 export default function Fade() {
-    const { top, setTop } = useContext(Context);
+    const { height, setHeight } = useContext(Context);
+
+
 
     useLayoutEffect(() => {
-        gsap.set("#fade", { top: top, visibility: 'visible' })
+        gsap.set("#fade", { height: height, visibility: 'visible', })
     }, [])
     useEffect(() => {
-        if (top == 0) {
-            gsap.set("#fade", { visibility: "hidden" })
-        } else {
-            gsap.to("#fade", { top: top, duration: 0.3 })
+        if (height == 0) {
+            gsap.to("#fade", { height: height, duration: 0.3, onComplete: () => { gsap.set("#fade", { visibility: 'hidden' }) } })
         }
+        else {
+            gsap.to("#fade", { height: height, duration: 0.3 })
+        }
+    }, [height, setHeight])
 
-    }, [top, setTop])
     return (
-        <div id="fade" className={`absolute h-full bg-white bg-opacity-40 w-full z-30 invisible`}></div>
+        <div id="fade" className={`absolute bg-white bg-opacity-40 w-full z-40 invisible bottom-0`}></div>
 
     )
 }

@@ -11,6 +11,7 @@ import CompareiPhones from "./compareiPhones";
 import Fade from "./fade";
 import React, { useEffect } from "react";
 import { useState } from "react";
+import { gsap } from "gsap";
 
 export const Context = React.createContext<any>(null);
 
@@ -19,20 +20,21 @@ export const Context = React.createContext<any>(null);
 //Remember to use navbar at the end
 export default function Page() {
     let [showOptions, setShowOptions] = useState(false);
-    let [top, setTop] = useState(700);
-
+    let [height, setHeight] = useState(980);
 
     return (
-        <Context.Provider value={{ top, setTop }}>
-            <Fade />
+        <Context.Provider value={{ height, setHeight }}>
             {
                 // <Navbar textColor='text-black' background='bg-white' />
             }
             <CarrierDeals />
             <IntroBuy />
-            <div id='grid' className="grid-cols-2 mt-4 grid mx-20">
-                <IPhoneImage />
-                <ChooseModel setShow={setShowOptions} />
+            <div className="relative">
+                <Fade />
+                <div id='grid' className="grid-cols-2 mt-4 grid mx-20">
+                    <IPhoneImage />
+                    <ChooseModel setShow={setShowOptions} />
+                </div>
             </div>
             <TradeIn />
             <BoxContents />

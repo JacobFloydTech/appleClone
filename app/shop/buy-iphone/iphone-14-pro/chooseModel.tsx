@@ -9,18 +9,19 @@ export default function ChooseModel(props: any) {
     let [color, setColor] = useState({ current: "", clicked: false });
     let [selectedModel, setSelectedModel] = useState(false);
     let [storage, setStorage] = useState({ storage: "", clicked: false });
-    let { top, setTop } = useContext(Context);
+    let { height, setHeight } = useContext(Context);
+
 
     //bg-gradient-to-b from-transparent to-[#FFFFFF]
 
     return (
-        <div className="w-auto ml-48 px-10 h-auto overflow-hidden relative">
+        <div id='selection' className="w-auto ml-48 px-10 h-auto overflow-hidden relative">
             <div className="text-lg flex font-semibold mt-12 mb-4">
                 <p className="pr-2">Model.</p>
                 <p className="text-gray-400">Which is the best for you?</p>
             </div>
             <div>
-                <div id='pro' onClick={() => { setCurrentlySelected("pro"); if (!selectedModel) { setTop((top: number) => top + 200); setSelectedModel(true); } }} className={"rounded-xl flex py-1 px-2 " + (currentlySelected == "pro" ? " border-blue-400 border-2" : " border-gray-400 border-2")}>
+                <div id='pro' onClick={() => { setCurrentlySelected("pro"); if (!selectedModel) { setHeight((height: number) => height - 200); setSelectedModel(true); } }} className={"rounded-xl flex py-1 px-2 " + (currentlySelected == "pro" ? " border-blue-400 border-2" : " border-gray-400 border-2")}>
                     <div className="my-auto block">
                         <p className="font-semibold">iPhone 14 Pro</p>
                         <p>6.1-inch display</p>
@@ -32,7 +33,7 @@ export default function ChooseModel(props: any) {
                         <p>trade‑in</p>
                     </div>
                 </div>
-                <div id='max' onClick={() => { setCurrentlySelected("max"); if (!selectedModel) { setTop((top: number) => top + 200); setSelectedModel(true) } }} className={"rounded-xl flex py-1 px-2 mt-4 " + ((currentlySelected == "max" ? " border-blue-400 border-2" : " border-gray-400 border-2"))}>
+                <div id='max' onClick={() => { setCurrentlySelected("max"); if (!selectedModel) { setHeight((height: number) => height - 200); setSelectedModel(true) } }} className={"rounded-xl flex py-1 px-2 mt-4 " + ((currentlySelected == "max" ? " border-blue-400 border-2" : " border-gray-400 border-2"))}>
                     <div className="my-auto block">
                         <p className="font-semibold">iPhone 14 Pro Max</p>
                         <p>6.7-inch display</p>
@@ -63,14 +64,14 @@ export default function ChooseModel(props: any) {
                     <div>
                         <p className="text-2xl font-semibold text-black mt-4">Color {color?.current}</p>
                         <div className="flex mx-auto">
-                            <div onMouseOver={() => { setColor({ ...color, current: "purple" }); }} onMouseLeave={() => { setColor({ ...color, current: "" }); }} onClick={() => { if (!color.clicked) { setColor({ ...color, clicked: true }); setTop((top: number) => top + 800); } }} className="rounded-full bg-purple-500 w-12 h-12"></div>
-                            <div onMouseOver={() => { setColor({ ...color, current: "gray" }); }} onMouseLeave={() => { setColor({ ...color, current: "" }); }} onClick={() => { if (!color.clicked) { setColor({ ...color, clicked: true }); setTop((top: number) => top + 800); } }} className="rounded-full mx-4 bg-gray-500 w-12 h-12"></div>
-                            <div onMouseOver={() => { setColor({ ...color, current: "gold" }); }} onMouseLeave={() => { setColor({ ...color, current: "" }); }} onClick={() => { if (!color.clicked) { setColor({ ...color, clicked: true }); setTop((top: number) => top + 800); } }} className="rounded-full  bg-yellow-500 w-12 h-12"></div>
+                            <div onMouseOver={() => { setColor({ ...color, current: "purple" }); }} onMouseLeave={() => { setColor({ ...color, current: "" }); }} onClick={() => { if (!color.clicked) { setColor({ ...color, clicked: true }); setHeight((height: number) => height - 800); } }} className="rounded-full bg-purple-500 w-12 h-12"></div>
+                            <div onMouseOver={() => { setColor({ ...color, current: "gray" }); }} onMouseLeave={() => { setColor({ ...color, current: "" }); }} onClick={() => { if (!color.clicked) { setColor({ ...color, clicked: true }); setHeight((height: number) => height - 800); } }} className="rounded-full mx-4 bg-gray-500 w-12 h-12"></div>
+                            <div onMouseOver={() => { setColor({ ...color, current: "gold" }); }} onMouseLeave={() => { setColor({ ...color, current: "" }); }} onClick={() => { if (!color.clicked) { setColor({ ...color, clicked: true }); setHeight((height: number) => height - 800); } }} className="rounded-full  bg-yellow-500 w-12 h-12"></div>
                         </div>
                     </div>
                     <div className="mt-24">
                         <p className="text-3xl font-semibold">Storage. How much space do you need?</p>
-                        <div onClick={() => { if (!storage.clicked) { setTop(0); }; setStorage({ storage: "128GB", clicked: true }) }} className={" border-2 rounded-xl flex mt-4 p-2" + (storage.storage == "128GB" ? " border-blue-500" : " border-gray-400")}>
+                        <div onClick={() => { if (!storage.clicked) { setHeight(0); }; setStorage({ storage: "128GB", clicked: true }) }} className={" border-2 rounded-xl flex mt-4 p-2" + (storage.storage == "128GB" ? " border-blue-500" : " border-gray-400")}>
                             <p className="font-semibold text-2xl my-auto">128GB</p>
                             <div className="ml-auto text-right">
                                 <p>From $1099</p>
@@ -79,7 +80,7 @@ export default function ChooseModel(props: any) {
                                 <p>trade‑in</p>
                             </div>
                         </div>
-                        <div onClick={() => { if (!storage.clicked) { setTop(0); }; setStorage({ storage: "256GB", clicked: true }) }} className={" border-2 rounded-xl flex mt-4 p-2" + (storage.storage == "256GB" ? " border-blue-500" : " border-gray-400")}>
+                        <div onClick={() => { if (!storage.clicked) { setHeight(0); }; setStorage({ storage: "256GB", clicked: true }) }} className={" border-2 rounded-xl flex mt-4 p-2" + (storage.storage == "256GB" ? " border-blue-500" : " border-gray-400")}>
                             <p className="font-semibold text-2xl my-auto">256GB</p>
                             <div className="ml-auto text-right">
                                 <p>From $1599</p>
@@ -88,7 +89,7 @@ export default function ChooseModel(props: any) {
                                 <p>trade‑in</p>
                             </div>
                         </div>
-                        <div onClick={() => { if (!storage.clicked) { setTop(0); }; setStorage({ storage: "512GB", clicked: true }) }} className={" border-2 rounded-xl flex mt-4 p-2" + (storage.storage == "512GB" ? " border-blue-500" : " border-gray-400")}>
+                        <div onClick={() => { if (!storage.clicked) { setHeight(0); }; setStorage({ storage: "512GB", clicked: true }) }} className={" border-2 rounded-xl flex mt-4 p-2" + (storage.storage == "512GB" ? " border-blue-500" : " border-gray-400")}>
                             <p className="font-semibold text-2xl my-auto">512GB</p>
 
                             <div className="ml-auto text-right">
@@ -98,7 +99,7 @@ export default function ChooseModel(props: any) {
                                 <p>trade‑in</p>
                             </div>
                         </div>
-                        <div onClick={() => { if (!storage.clicked) { setTop(0); }; setStorage({ storage: "1TB", clicked: true }) }} className={" border-2 rounded-xl flex mt-4 p-2" + (storage.storage == "1TB" ? " border-blue-500" : " border-gray-400")}>
+                        <div onClick={() => { if (!storage.clicked) { setHeight(0); }; setStorage({ storage: "1TB", clicked: true }) }} className={" border-2 rounded-xl flex mt-4 p-2" + (storage.storage == "1TB" ? " border-blue-500" : " border-gray-400")}>
                             <p className="font-semibold text-2xl my-auto">1TB</p>
                             <div className="ml-auto text-right">
                                 <p>From $1599</p>

@@ -51,7 +51,7 @@ export default function PhotoGallery() {
                     <source id='srcvideo' src="/apple/iphone14Pro/iphone14intro.mp4" type="video/mp4"></source>
                 </video>}
             {ended &&
-                <div id="photogallery">
+                <div id="photogallery" className="h-[904px]">
                     <div className="flex">
                         <p className="text-gray-600 font-semibold w-auto h-auto text-6xl ml-[120px] opacity-90 mt-6">Pro. Beyond</p>
                         <ul className={(fixed ? "fixed flex z-50 justify-center w-full pl-[740px] backdrop-blur-xl py-[10px]" : "flex w-auto justify-center align-center mt-[70px] ml-[400px]")}>

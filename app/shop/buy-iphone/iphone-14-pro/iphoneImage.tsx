@@ -27,7 +27,7 @@ export default function IPhoneImage() {
 
     }
     return (
-        <div className="h-auto relative">
+        <div className="h-auto relative z-50">
             <div id='fullcontainer' className={"inline-block rounded-3xl w-[750px] h-[420px] overflow-hidden bg-gray-100 absolute"}>
                 <div id='container' className="w-[1500px] flex">
                     <img id="img" src={"/apple/shop/twoiphones.jpeg"} className="w-[750px] rounded-3xl h-auto mr-auto"></img>
