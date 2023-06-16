@@ -10,6 +10,7 @@ import BoxContents from "./boxContents";
 import CompareiPhones from "./compareiPhones";
 import Fade from "./fade";
 import FrequentlyAskedQuestions from "./frequentlyAskedQuestions";
+import Footer from "./footer";
 
 
 import React, { useEffect } from "react";
@@ -43,6 +44,7 @@ export default function Page() {
             <BoxContents />
             <CompareiPhones />
             <FrequentlyAskedQuestions></FrequentlyAskedQuestions>
+            <Footer></Footer>
             {showOptions && <InfoGuidePopUp setShow={setShowOptions} />}
         </Context.Provider>
     )
