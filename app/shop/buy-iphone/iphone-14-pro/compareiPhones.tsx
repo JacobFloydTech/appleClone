@@ -208,18 +208,22 @@ export default function CompareiPhones() {
                 <div className="text-center">
                     <img src={'/apple/shop/gridicons/5g.jpeg'} className="w-12 mx-auto"></img>
                     <p>Superfast 5G Celluer</p>
+                    <div className="h-[2px] w-1/2 bg-gray-400 my-2 mx-auto"></div>
                 </div>
                 <div className="text-center">
                     <img src={'/apple/shop/gridicons/5g.jpeg'} className="w-12 mx-auto"></img>
                     <p>Superfast 5G Celluer</p>
+                    <div className="h-[2px] w-1/2 bg-gray-400 my-2 mx-auto"></div>
                 </div>
                 <div className="text-center">
                     <img src={'/apple/shop/gridicons/5g.jpeg'} className="w-12 mx-auto"></img>
                     <p>Superfast 5G Celluer</p>
+                    <div className="h-[2px] w-1/2 bg-gray-400 my-2 mx-auto"></div>
                 </div>
                 <div className="text-center">
                     <img src={'/apple/shop/gridicons/5g.jpeg'} className="w-12 mx-auto"></img>
                     <p>5G Celluer</p>
+                    <div className="h-[2px] w-1/2 bg-gray-400 my-2 mx-auto"></div>
                 </div>
 
             </div>

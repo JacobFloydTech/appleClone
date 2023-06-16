@@ -9,6 +9,9 @@ import TradeIn from "./tradeIn";
 import BoxContents from "./boxContents";
 import CompareiPhones from "./compareiPhones";
 import Fade from "./fade";
+import FrequentlyAskedQuestions from "./frequentlyAskedQuestions";
+
+
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { gsap } from "gsap";
@@ -39,6 +42,7 @@ export default function Page() {
             <TradeIn />
             <BoxContents />
             <CompareiPhones />
+            <FrequentlyAskedQuestions></FrequentlyAskedQuestions>
             {showOptions && <InfoGuidePopUp setShow={setShowOptions} />}
         </Context.Provider>
     )
